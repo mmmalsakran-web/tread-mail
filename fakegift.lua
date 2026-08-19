@@ -1,127 +1,99 @@
--- Fake Admin Treadmill Gift Popup (Exact Copy Style)
+local p = game:GetService("Players").LocalPlayer
+local gui = Instance.new("ScreenGui", p:WaitForChild("PlayerGui"))
+gui.Name = "FakeAdminGift"
 
-local Players = game:GetService("Players")
-local player = Players.LocalPlayer
-local PlayerGui = player:WaitForChild("PlayerGui")
+local g = Instance.new("Frame", gui)
+g.Size = UDim2.new(0,420,0,300)
+g.Position = UDim2.new(0.5,-210,0.5,-150)
+g.BackgroundColor3 = Color3.fromRGB(45,45,60)
 
--- Main GUI
-local ScreenGui = Instance.new("ScreenGui")
-ScreenGui.Name = "FakeAdminGift"
-ScreenGui.Parent = PlayerGui
+local t = Instance.new("TextLabel", g)
+t.Size = UDim2.new(1,0,0,40)
+t.Text = "~GIFT~"
+t.Font = Enum.Font.SourceSansBold
+t.TextSize = 28
+t.TextColor3 = Color3.new(1,1,1)
+t.BackgroundTransparency = 1
 
--- Gift Frame
-local GiftFrame = Instance.new("Frame")
-GiftFrame.Size = UDim2.new(0, 420, 0, 300)
-GiftFrame.Position = UDim2.new(0.5, -210, 0.5, -150)
-GiftFrame.BackgroundColor3 = Color3.fromRGB(45, 45, 60)
-GiftFrame.BorderSizePixel = 0
-GiftFrame.Parent = ScreenGui
+local img = Instance.new("ImageLabel", g)
+img.Size = UDim2.new(0,150,0,150)
+img.Position = UDim2.new(0,20,0,60)
+img.BackgroundTransparency = 1
+img.Image = "rbxassetid://18450151234"
 
--- Title
-local Title = Instance.new("TextLabel")
-Title.Size = UDim2.new(1, 0, 0, 40)
-Title.Text = "~GIFT~"
-Title.Font = Enum.Font.SourceSansBold
-Title.TextSize = 28
-Title.TextColor3 = Color3.new(1, 1, 1)
-Title.BackgroundTransparency = 1
-Title.Parent = GiftFrame
+local name = Instance.new("TextLabel", g)
+name.Size = UDim2.new(0,200,0,40)
+name.Position = UDim2.new(0,180,0,70)
+name.Text = "Admin Treadmill - Gift"
+name.Font = Enum.Font.SourceSansBold
+name.TextSize = 20
+name.TextColor3 = Color3.new(1,1,1)
+name.BackgroundTransparency = 1
 
--- Admin Treadmill Image (Fake)
-local Image = Instance.new("ImageLabel")
-Image.Size = UDim2.new(0, 150, 0, 150)
-Image.Position = UDim2.new(0, 20, 0, 60)
-Image.BackgroundTransparency = 1
-Image.Image = "rbxassetid://18450151234"
-Image.Parent = GiftFrame
+local warn = Instance.new("TextLabel", g)
+warn.Size = UDim2.new(0,200,0,60)
+warn.Position = UDim2.new(0,180,0,110)
+warn.Text = "MAKE SURE THE PLAYER DOESN'T ALREADY OWN THE GAMEPASS.\nNO REFUNDS."
+warn.Font = Enum.Font.SourceSans
+warn.TextSize = 16
+warn.TextColor3 = Color3.fromRGB(255,200,200)
+warn.BackgroundTransparency = 1
 
--- Item Name
-local ItemName = Instance.new("TextLabel")
-ItemName.Size = UDim2.new(0, 200, 0, 40)
-ItemName.Position = UDim2.new(0, 180, 0, 70)
-ItemName.Text = "Admin Treadmill - Gift"
-ItemName.Font = Enum.Font.SourceSansBold
-ItemName.TextSize = 20
-ItemName.TextColor3 = Color3.new(1, 1, 1)
-ItemName.BackgroundTransparency = 1
-ItemName.Parent = GiftFrame
+local send = Instance.new("TextButton", g)
+send.Size = UDim2.new(0,380,0,45)
+send.Position = UDim2.new(0,20,0,230)
+send.Text = "SEND GIFT (1599 Robux)"
+send.Font = Enum.Font.SourceSansBold
+send.TextSize = 22
+send.TextColor3 = Color3.new(1,1,1)
+send.BackgroundColor3 = Color3.fromRGB(120,40,40)
 
--- Warning Text
-local Warning = Instance.new("TextLabel")
-Warning.Size = UDim2.new(0, 200, 0, 60)
-Warning.Position = UDim2.new(0, 180, 0, 110)
-Warning.Text = "MAKE SURE THE PLAYER DOESN'T ALREADY OWN THE GAMEPASS.\nNO REFUNDS."
-Warning.Font = Enum.Font.SourceSans
-Warning.TextSize = 16
-Warning.TextColor3 = Color3.fromRGB(255, 200, 200)
-Warning.BackgroundTransparency = 1
-Warning.Parent = GiftFrame
+local buy = Instance.new("Frame", gui)
+buy.Size = UDim2.new(0,420,0,260)
+buy.Position = UDim2.new(0.5,-210,0.5,-130)
+buy.BackgroundColor3 = Color3.fromRGB(35,35,50)
+buy.Visible = false
 
--- Send Gift Button
-local SendGift = Instance.new("TextButton")
-SendGift.Size = UDim2.new(0, 380, 0, 45)
-SendGift.Position = UDim2.new(0, 20, 0, 230)
-SendGift.Text = "SEND GIFT (1599 Robux)"
-SendGift.Font = Enum.Font.SourceSansBold
-SendGift.TextSize = 22
-SendGift.TextColor3 = Color3.new(1, 1, 1)
-SendGift.BackgroundColor3 = Color3.fromRGB(120, 40, 40)
-SendGift.Parent = GiftFrame
+local bt = Instance.new("TextLabel", buy)
+bt.Size = UDim2.new(1,0,0,40)
+bt.Text = "~GIFT~"
+bt.Font = Enum.Font.SourceSansBold
+bt.TextSize = 28
+bt.TextColor3 = Color3.new(1,1,1)
+bt.BackgroundTransparency = 1
 
--- BUY Popup
-local BuyFrame = Instance.new("Frame")
-BuyFrame.Size = UDim2.new(0, 420, 0, 260)
-BuyFrame.Position = UDim2.new(0.5, -210, 0.5, -130)
-BuyFrame.BackgroundColor3 = Color3.fromRGB(35, 35, 50)
-BuyFrame.BorderSizePixel = 0
-BuyFrame.Visible = false
-BuyFrame.Parent = ScreenGui
+local info = Instance.new("TextLabel", buy)
+info.Size = UDim2.new(1,-20,0,80)
+info.Position = UDim2.new(0,10,0,50)
+info.Text = "Buy Robux and item\nAdmin Treadmill - Gift\nPrice: 2000 Robux"
+info.Font = Enum.Font.SourceSans
+info.TextSize = 20
+info.TextColor3 = Color3.new(1,1,1)
+info.BackgroundTransparency = 1
 
-local BuyTitle = Instance.new("TextLabel")
-BuyTitle.Size = UDim2.new(1, 0, 0, 40)
-BuyTitle.Text = "~GIFT~"
-BuyTitle.Font = Enum.Font.SourceSansBold
-BuyTitle.TextSize = 28
-BuyTitle.TextColor3 = Color3.new(1, 1, 1)
-BuyTitle.BackgroundTransparency = 1
-BuyTitle.Parent = BuyFrame
+local bb = Instance.new("TextButton", buy)
+bb.Size = UDim2.new(0,380,0,45)
+bb.Position = UDim2.new(0,20,0,160)
+bb.Text = "BUY"
+bb.Font = Enum.Font.SourceSansBold
+bb.TextSize = 22
+bb.TextColor3 = Color3.new(1,1,1)
+bb.BackgroundColor3 = Color3.fromRGB(40,120,40)
 
-local BuyInfo = Instance.new("TextLabel")
-BuyInfo.Size = UDim2.new(1, -20, 0, 80)
-BuyInfo.Position = UDim2.new(0, 10, 0, 50)
-BuyInfo.Text = "Buy Robux and item\nAdmin Treadmill - Gift\nPrice: 2000 Robux"
-BuyInfo.Font = Enum.Font.SourceSans
-BuyInfo.TextSize = 20
-BuyInfo.TextColor3 = Color3.new(1, 1, 1)
-BuyInfo.BackgroundTransparency = 1
-BuyInfo.Parent = BuyFrame
+local msg = Instance.new("TextLabel", buy)
+msg.Size = UDim2.new(1,0,0,40)
+msg.Position = UDim2.new(0,0,0,210)
+msg.Text = ""
+msg.Font = Enum.Font.SourceSansBold
+msg.TextSize = 22
+msg.TextColor3 = Color3.new(0,1,0)
+msg.BackgroundTransparency = 1
 
-local BuyButton = Instance.new("TextButton")
-BuyButton.Size = UDim2.new(0, 380, 0, 45)
-BuyButton.Position = UDim2.new(0, 20, 0, 160)
-BuyButton.Text = "BUY"
-BuyButton.Font = Enum.Font.SourceSansBold
-BuyButton.TextSize = 22
-BuyButton.TextColor3 = Color3.new(1, 1, 1)
-BuyButton.BackgroundColor3 = Color3.fromRGB(40, 120, 40)
-BuyButton.Parent = BuyFrame
-
-local BuyMessage = Instance.new("TextLabel")
-BuyMessage.Size = UDim2.new(1, 0, 0, 40)
-BuyMessage.Position = UDim2.new(0, 0, 0, 210)
-BuyMessage.Text = ""
-BuyMessage.Font = Enum.Font.SourceSansBold
-BuyMessage.TextSize = 22
-BuyMessage.TextColor3 = Color3.new(0, 1, 0)
-BuyMessage.BackgroundTransparency = 1
-BuyMessage.Parent = BuyFrame
-
--- Button Logic
-SendGift.MouseButton1Click:Connect(function()
-    GiftFrame.Visible = false
-    BuyFrame.Visible = true
+send.MouseButton1Click:Connect(function()
+    g.Visible = false
+    buy.Visible = true
 end)
 
-BuyButton.MouseButton1Click:Connect(function()
-    BuyMessage.Text = "Gift Sent!"
+bb.MouseButton1Click:Connect(function()
+    msg.Text = "Gift Sent!"
 end)
