@@ -32,7 +32,7 @@ local Image = Instance.new("ImageLabel")
 Image.Size = UDim2.new(0, 150, 0, 150)
 Image.Position = UDim2.new(0, 20, 0, 60)
 Image.BackgroundTransparency = 1
-Image.Image = "rbxassetid://18450151234" -- fake treadmill image
+Image.Image = "rbxassetid://18450151234"
 Image.Parent = GiftFrame
 
 -- Item Name
