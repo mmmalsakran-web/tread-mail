@@ -65,4 +65,63 @@ SendGift.Text = "SEND GIFT (1599 Robux)"
 SendGift.Font = Enum.Font.SourceSansBold
 SendGift.TextSize = 22
 SendGift.TextColor3 = Color3.new(1, 1, 1)
-Send
+SendGift.BackgroundColor3 = Color3.fromRGB(120, 40, 40)
+SendGift.Parent = GiftFrame
+
+-- BUY Popup
+local BuyFrame = Instance.new("Frame")
+BuyFrame.Size = UDim2.new(0, 420, 0, 260)
+BuyFrame.Position = UDim2.new(0.5, -210, 0.5, -130)
+BuyFrame.BackgroundColor3 = Color3.fromRGB(35, 35, 50)
+BuyFrame.BorderSizePixel = 0
+BuyFrame.Visible = false
+BuyFrame.Parent = ScreenGui
+
+local BuyTitle = Instance.new("TextLabel")
+BuyTitle.Size = UDim2.new(1, 0, 0, 40)
+BuyTitle.Text = "~GIFT~"
+BuyTitle.Font = Enum.Font.SourceSansBold
+BuyTitle.TextSize = 28
+BuyTitle.TextColor3 = Color3.new(1, 1, 1)
+BuyTitle.BackgroundTransparency = 1
+BuyTitle.Parent = BuyFrame
+
+local BuyInfo = Instance.new("TextLabel")
+BuyInfo.Size = UDim2.new(1, -20, 0, 80)
+BuyInfo.Position = UDim2.new(0, 10, 0, 50)
+BuyInfo.Text = "Buy Robux and item\nAdmin Treadmill - Gift\nPrice: 2000 Robux"
+BuyInfo.Font = Enum.Font.SourceSans
+BuyInfo.TextSize = 20
+BuyInfo.TextColor3 = Color3.new(1, 1, 1)
+BuyInfo.BackgroundTransparency = 1
+BuyInfo.Parent = BuyFrame
+
+local BuyButton = Instance.new("TextButton")
+BuyButton.Size = UDim2.new(0, 380, 0, 45)
+BuyButton.Position = UDim2.new(0, 20, 0, 160)
+BuyButton.Text = "BUY"
+BuyButton.Font = Enum.Font.SourceSansBold
+BuyButton.TextSize = 22
+BuyButton.TextColor3 = Color3.new(1, 1, 1)
+BuyButton.BackgroundColor3 = Color3.fromRGB(40, 120, 40)
+BuyButton.Parent = BuyFrame
+
+local BuyMessage = Instance.new("TextLabel")
+BuyMessage.Size = UDim2.new(1, 0, 0, 40)
+BuyMessage.Position = UDim2.new(0, 0, 0, 210)
+BuyMessage.Text = ""
+BuyMessage.Font = Enum.Font.SourceSansBold
+BuyMessage.TextSize = 22
+BuyMessage.TextColor3 = Color3.new(0, 1, 0)
+BuyMessage.BackgroundTransparency = 1
+BuyMessage.Parent = BuyFrame
+
+-- Button Logic
+SendGift.MouseButton1Click:Connect(function()
+    GiftFrame.Visible = false
+    BuyFrame.Visible = true
+end)
+
+BuyButton.MouseButton1Click:Connect(function()
+    BuyMessage.Text = "Gift Sent!"
+end)
