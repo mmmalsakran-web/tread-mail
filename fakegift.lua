@@ -1,91 +1,68 @@
--- Fake Robux Gift GUI for Xeno (Client-Side Only)
+-- Fake Admin Treadmill Gift Popup (Exact Copy Style)
+
 local Players = game:GetService("Players")
-local UIS = game:GetService("UserInputService")
 local player = Players.LocalPlayer
 local PlayerGui = player:WaitForChild("PlayerGui")
 
--- GUI
+-- Main GUI
 local ScreenGui = Instance.new("ScreenGui")
-ScreenGui.Name = "FakeTreadmillGift"
+ScreenGui.Name = "FakeAdminGift"
 ScreenGui.Parent = PlayerGui
 
-local Frame = Instance.new("Frame")
-Frame.Size = UDim2.new(0, 320, 0, 180)
-Frame.Position = UDim2.new(0.5, -160, 0.5, -90)
-Frame.BackgroundColor3 = Color3.fromRGB(40, 40, 60)
-Frame.Active = true
-Frame.Draggable = true
-Frame.Visible = true -- ⭐ AUTO OPEN
-Frame.Parent = ScreenGui
+-- Gift Frame
+local GiftFrame = Instance.new("Frame")
+GiftFrame.Size = UDim2.new(0, 420, 0, 300)
+GiftFrame.Position = UDim2.new(0.5, -210, 0.5, -150)
+GiftFrame.BackgroundColor3 = Color3.fromRGB(45, 45, 60)
+GiftFrame.BorderSizePixel = 0
+GiftFrame.Parent = ScreenGui
 
+-- Title
 local Title = Instance.new("TextLabel")
-Title.Size = UDim2.new(1, 0, 0, 35)
-Title.Text = "TREADMILL ROBUX GIFT"
-Title.TextColor3 = Color3.new(1, 1, 1)
+Title.Size = UDim2.new(1, 0, 0, 40)
+Title.Text = "~GIFT~"
 Title.Font = Enum.Font.SourceSansBold
-Title.TextSize = 20
+Title.TextSize = 28
+Title.TextColor3 = Color3.new(1, 1, 1)
 Title.BackgroundTransparency = 1
-Title.Parent = Frame
+Title.Parent = GiftFrame
 
-local Close = Instance.new("TextButton")
-Close.Size = UDim2.new(0, 35, 0, 35)
-Close.Position = UDim2.new(1, -35, 0, 0)
-Close.Text = "X"
-Close.TextColor3 = Color3.new(1, 0, 0)
-Close.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
-Close.Parent = Frame
+-- Admin Treadmill Image (Fake)
+local Image = Instance.new("ImageLabel")
+Image.Size = UDim2.new(0, 150, 0, 150)
+Image.Position = UDim2.new(0, 20, 0, 60)
+Image.BackgroundTransparency = 1
+Image.Image = "rbxassetid://18450151234" -- fake treadmill image
+Image.Parent = GiftFrame
 
-Close.MouseButton1Click:Connect(function()
-    Frame.Visible = false
-end)
+-- Item Name
+local ItemName = Instance.new("TextLabel")
+ItemName.Size = UDim2.new(0, 200, 0, 40)
+ItemName.Position = UDim2.new(0, 180, 0, 70)
+ItemName.Text = "Admin Treadmill - Gift"
+ItemName.Font = Enum.Font.SourceSansBold
+ItemName.TextSize = 20
+ItemName.TextColor3 = Color3.new(1, 1, 1)
+ItemName.BackgroundTransparency = 1
+ItemName.Parent = GiftFrame
 
-local AmountLabel = Instance.new("TextLabel")
-AmountLabel.Position = UDim2.new(0, 10, 0, 50)
-AmountLabel.Size = UDim2.new(1, -20, 0, 25)
-AmountLabel.Text = "Robux Amount:"
-AmountLabel.TextColor3 = Color3.new(1, 1, 1)
-AmountLabel.BackgroundTransparency = 1
-AmountLabel.Font = Enum.Font.SourceSans
-AmountLabel.TextSize = 18
-AmountLabel.Parent = Frame
+-- Warning Text
+local Warning = Instance.new("TextLabel")
+Warning.Size = UDim2.new(0, 200, 0, 60)
+Warning.Position = UDim2.new(0, 180, 0, 110)
+Warning.Text = "MAKE SURE THE PLAYER DOESN'T ALREADY OWN THE GAMEPASS.\nNO REFUNDS."
+Warning.Font = Enum.Font.SourceSans
+Warning.TextSize = 16
+Warning.TextColor3 = Color3.fromRGB(255, 200, 200)
+Warning.BackgroundTransparency = 1
+Warning.Parent = GiftFrame
 
-local AmountBox = Instance.new("TextBox")
-AmountBox.Position = UDim2.new(0, 140, 0, 50)
-AmountBox.Size = UDim2.new(0, 150, 0, 25)
-AmountBox.PlaceholderText = "e.g. 5000"
-AmountBox.Text = ""
-AmountBox.Font = Enum.Font.SourceSans
-AmountBox.TextSize = 18
-AmountBox.ClearTextOnFocus = false
-AmountBox.Parent = Frame
-
-local BuyButton = Instance.new("TextButton")
-BuyButton.Size = UDim2.new(1, -20, 0, 35)
-BuyButton.Position = UDim2.new(0, 10, 0, 90)
-BuyButton.Text = "BUY GIFT"
-BuyButton.Font = Enum.Font.SourceSansBold
-BuyButton.TextSize = 18
-BuyButton.BackgroundColor3 = Color3.fromRGB(120, 120, 180)
-BuyButton.Parent = Frame
-
-local Message = Instance.new("TextLabel")
-Message.Position = UDim2.new(0, 10, 0, 135)
-Message.Size = UDim2.new(1, -20, 0, 30)
-Message.Text = ""
-Message.TextColor3 = Color3.new(0, 1, 0)
-Message.BackgroundTransparency = 1
-Message.Font = Enum.Font.SourceSansItalic
-Message.TextSize = 18
-Message.Parent = Frame
-
--- Fake Gift Action
-BuyButton.MouseButton1Click:Connect(function()
-    local amount = tonumber(AmountBox.Text)
-    if amount and amount > 0 then
-        Message.TextColor3 = Color3.new(0, 1, 0)
-        Message.Text = "Gift Sent! (" .. amount .. " Robux)"
-    else
-        Message.TextColor3 = Color3.new(1, 0, 0)
-        Message.Text = "Invalid amount!"
-    end
-end)
+-- Send Gift Button
+local SendGift = Instance.new("TextButton")
+SendGift.Size = UDim2.new(0, 380, 0, 45)
+SendGift.Position = UDim2.new(0, 20, 0, 230)
+SendGift.Text = "SEND GIFT (1599 Robux)"
+SendGift.Font = Enum.Font.SourceSansBold
+SendGift.TextSize = 22
+SendGift.TextColor3 = Color3.new(1, 1, 1)
+Send
