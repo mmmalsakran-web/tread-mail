@@ -1,14 +1,99 @@
--- LocalScript placed in StarterPlayerScripts or inside a GUI
-local UserInputService = game:GetService("UserInputService")local Players = game:GetService("Players")local player = Players.LocalPlayerlocal PlayerGui = player:WaitForChild("PlayerGui")
--- Create fake gift UIlocal ScreenGui = Instance.new("ScreenGui", PlayerGui)ScreenGui.Name = "FakeGiftGui"
-local Frame = Instance.new("Frame", ScreenGui)Frame.Size = UDim2.new(0, 300, 0, 150)Frame.Position = UDim2.new(0.5, -150, 0.5, -75)Frame.BackgroundColor3 = Color3.fromRGB(50, 50, 70)Frame.Visible = falseFrame.Active = trueFrame.Draggable = true
-local Title = Instance.new("TextLabel", Frame)Title.Size = UDim2.new(1, 0, 0, 30)Title.BackgroundTransparency = 1Title.Text = "~FAKE ROBUX GIFT~"Title.TextColor3 = Color3.new(1, 1, 1)Title.Font = Enum.Font.SourceSansBoldTitle.TextSize = 20
-local CloseButton = Instance.new("TextButton", Frame)CloseButton.Size = UDim2.new(0, 30, 0, 30)CloseButton.Position = UDim2.new(1, -35, 0, 0)CloseButton.Text = "X"CloseButton.Font = Enum.Font.SourceSansBoldCloseButton.TextColor3 = Color3.new(1, 0, 0)CloseButton.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
-CloseButton.MouseButton1Click:Connect(function()    Frame.Visible = falseend)
-local AmountLabel = Instance.new("TextLabel", Frame)AmountLabel.Position = UDim2.new(0, 10, 0, 40)AmountLabel.Size = UDim2.new(0, 120, 0, 25)AmountLabel.Text = "Enter Robux amount:"AmountLabel.TextColor3 = Color3.new(1, 1, 1)AmountLabel.BackgroundTransparency = 1AmountLabel.Font = Enum.Font.SourceSansAmountLabel.TextSize = 18
-local AmountBox = Instance.new("TextBox", Frame)AmountBox.Position = UDim2.new(0, 140, 0, 40)AmountBox.Size = UDim2.new(0, 140, 0, 25)AmountBox.PlaceholderText = "e.g. 1000"AmountBox.Text = ""AmountBox.ClearTextOnFocus = falseAmountBox.Font = Enum.Font.SourceSansAmountBox.TextSize = 18
-local SendButton = Instance.new("TextButton", Frame)SendButton.Size = UDim2.new(1, -20, 0, 40)SendButton.Position = UDim2.new(0, 10, 1, -50)SendButton.Text = "Send Gift"SendButton.Font = Enum.Font.SourceSansBoldSendButton.TextSize = 22SendButton.BackgroundColor3 = Color3.fromRGB(0, 170, 0)SendButton.TextColor3 = Color3.new(1, 1, 1)
-local MessageLabel = Instance.new("TextLabel", Frame)MessageLabel.Position = UDim2.new(0, 10, 0, 75)MessageLabel.Size = UDim2.new(1, -20, 0, 25)MessageLabel.Text = ""MessageLabel.TextColor3 = Color3.new(0, 1, 0)MessageLabel.BackgroundTransparency = 1MessageLabel.Font = Enum.Font.SourceSansItalicMessageLabel.TextSize = 18
--- Function to open the fake gift UIlocal function openFakeGiftUI()    AmountBox.Text = ""    MessageLabel.Text = ""    Frame.Visible = trueend
--- Bind a key to open the fake gift UI (Escape key example)UserInputService.InputBegan:Connect(function(input, gameProcessed)    if not gameProcessed then        if input.KeyCode == Enum.KeyCode.Escape then            openFakeGiftUI()        end    endend)
--- Simulate the buy gift actionSendButton.MouseButton1Click:Connect(function()    local amount = tonumber(AmountBox.Text)    if amount and amount > 0 then        MessageLabel.Text = "Gift Sent! (" .. tostring(amount) .. " Robux)"        -- You can add additional effects or sounds here    else        MessageLabel.Text = "Please enter a valid amount"        MessageLabel.TextColor3 = Color3.new(1, 0, 0)    endend)
+-- Fake Robux Gift GUI for Xeno (Client-Side Only)
+local Players = game:GetService("Players")
+local UIS = game:GetService("UserInputService")
+local player = Players.LocalPlayer
+local PlayerGui = player:WaitForChild("PlayerGui")
+
+-- GUI
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Name = "FakeTreadmillGift"
+ScreenGui.Parent = PlayerGui
+
+local Frame = Instance.new("Frame")
+Frame.Size = UDim2.new(0, 320, 0, 180)
+Frame.Position = UDim2.new(0.5, -160, 0.5, -90)
+Frame.BackgroundColor3 = Color3.fromRGB(40, 40, 60)
+Frame.Active = true
+Frame.Draggable = true
+Frame.Visible = false
+Frame.Parent = ScreenGui
+
+local Title = Instance.new("TextLabel")
+Title.Size = UDim2.new(1, 0, 0, 35)
+Title.Text = "TREADMILL ROBUX GIFT"
+Title.TextColor3 = Color3.new(1, 1, 1)
+Title.Font = Enum.Font.SourceSansBold
+Title.TextSize = 20
+Title.BackgroundTransparency = 1
+Title.Parent = Frame
+
+local Close = Instance.new("TextButton")
+Close.Size = UDim2.new(0, 35, 0, 35)
+Close.Position = UDim2.new(1, -35, 0, 0)
+Close.Text = "X"
+Close.TextColor3 = Color3.new(1, 0, 0)
+Close.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
+Close.Parent = Frame
+
+Close.MouseButton1Click:Connect(function()
+    Frame.Visible = false
+end)
+
+local AmountLabel = Instance.new("TextLabel")
+AmountLabel.Position = UDim2.new(0, 10, 0, 50)
+AmountLabel.Size = UDim2.new(1, -20, 0, 25)
+AmountLabel.Text = "Robux Amount:"
+AmountLabel.TextColor3 = Color3.new(1, 1, 1)
+AmountLabel.BackgroundTransparency = 1
+AmountLabel.Font = Enum.Font.SourceSans
+AmountLabel.TextSize = 18
+AmountLabel.Parent = Frame
+
+local AmountBox = Instance.new("TextBox")
+AmountBox.Position = UDim2.new(0, 140, 0, 50)
+AmountBox.Size = UDim2.new(0, 150, 0, 25)
+AmountBox.PlaceholderText = "e.g. 5000"
+AmountBox.Text = ""
+AmountBox.Font = Enum.Font.SourceSans
+AmountBox.TextSize = 18
+AmountBox.ClearTextOnFocus = false
+AmountBox.Parent = Frame
+
+local BuyButton = Instance.new("TextButton")
+BuyButton.Size = UDim2.new(1, -20, 0, 35)
+BuyButton.Position = UDim2.new(0, 10, 0, 90)
+BuyButton.Text = "BUY GIFT"
+BuyButton.Font = Enum.Font.SourceSansBold
+BuyButton.TextSize = 18
+BuyButton.BackgroundColor3 = Color3.fromRGB(120, 120, 180)
+BuyButton.Parent = Frame
+
+local Message = Instance.new("TextLabel")
+Message.Position = UDim2.new(0, 10, 0, 135)
+Message.Size = UDim2.new(1, -20, 0, 30)
+Message.Text = ""
+Message.TextColor3 = Color3.new(0, 1, 0)
+Message.BackgroundTransparency = 1
+Message.Font = Enum.Font.SourceSansItalic
+Message.TextSize = 18
+Message.Parent = Frame
+
+-- Open GUI with ESC
+UIS.InputBegan:Connect(function(input, gp)
+    if gp then return end
+    if input.KeyCode == Enum.KeyCode.Escape then
+        Frame.Visible = true
+    end
+end)
+
+-- Fake Gift Action
+BuyButton.MouseButton1Click:Connect(function()
+    local amount = tonumber(AmountBox.Text)
+    if amount and amount > 0 then
+        Message.TextColor3 = Color3.new(0, 1, 0)
+        Message.Text = "Gift Sent! (" .. amount .. " Robux)"
+    else
+        Message.TextColor3 = Color3.new(1, 0, 0)
+        Message.Text = "Invalid amount!"
+    end
+end)
