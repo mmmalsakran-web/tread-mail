@@ -15,7 +15,7 @@ Frame.Position = UDim2.new(0.5, -160, 0.5, -90)
 Frame.BackgroundColor3 = Color3.fromRGB(40, 40, 60)
 Frame.Active = true
 Frame.Draggable = true
-Frame.Visible = false
+Frame.Visible = true -- ⭐ AUTO OPEN
 Frame.Parent = ScreenGui
 
 local Title = Instance.new("TextLabel")
@@ -77,14 +77,6 @@ Message.BackgroundTransparency = 1
 Message.Font = Enum.Font.SourceSansItalic
 Message.TextSize = 18
 Message.Parent = Frame
-
--- Open GUI with ESC
-UIS.InputBegan:Connect(function(input, gp)
-    if gp then return end
-    if input.KeyCode == Enum.KeyCode.Escape then
-        Frame.Visible = true
-    end
-end)
 
 -- Fake Gift Action
 BuyButton.MouseButton1Click:Connect(function()
